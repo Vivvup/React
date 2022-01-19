@@ -1,23 +1,19 @@
-import logo from './logo.svg';
+
 import './App.css';
+import { Link, Routes, Route } from 'react-router-dom';
+import Kodu from './pages/Kodu';
+import Menüü from './components/Menüü';
+import Ostukorv from './pages/Ostukorv';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Muuda <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Menüü/>
+      <Routes>
+        <Route path= "/" exact element={ <Kodu />} />
+        <Route path= "/ostukorv" exact element={ <Ostukorv />} />
+      </Routes>
+      
     </div>
   );
 }
