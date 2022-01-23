@@ -1,10 +1,12 @@
 
 import './App.css';
-import { Link, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Kodu from './pages/Kodu';
 import Menüü from './components/Menüü';
 import Ostukorv from './pages/Ostukorv';
 
+//Link to="/" --localhost:3000
+//Link to="/ostukorv" --localhost:3000/ostukorv
 function App() {
   return (
     <div className="App">
