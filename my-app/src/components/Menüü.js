@@ -8,6 +8,9 @@ function Menüü () {
         <Link to="/ostukorv">
           <button className = "menyy-nupp">OSTUKORVI</button>
         </Link>
+        <Link to="/pakiautomaadid">
+          <button className = "menyy-nupp">PAKIAUTOMAADID</button>
+        </Link>
       </div>)
      
 }

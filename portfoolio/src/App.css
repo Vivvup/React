@@ -1,0 +1,51 @@
+
+.main-link-list {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.main-link {
+  color: rgb(66, 18, 18);
+  background-color: white;
+  width: 300px;
+  height: 200px;
+  margin-top: 20 px;
+  padding: 20px 0;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.main-link img {
+  width: 250px;
+  height: 160px;
+}
+
+.main-link p {
+  font-family: 'Roboto';
+}
+
+.main-link:hover {
+transition: .5s;
+transform: scale(1.1);
+cursor:pointer;
+box-shadow: 0 8px 180px 0px black;
+}
+
+.main-text {
+  text-align: center;
+  font-size: 30px;
+  margin-top: 100px;
+}
+
+.retangle {
+  height: 7px;
+  width: 60px;
+  background-color: lightgrey;
+  margin: 50px auto;
+}
+.App {
+  text-align: center;
+}
+
+
+

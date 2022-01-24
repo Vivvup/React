@@ -14,7 +14,7 @@ function Kodu() {
     return (
         <div>
             {saaTooted().map(toode => 
-            <div className="toode">
+            <div  key={toode.nimetus} className="toode">
                 <div>{toode.nimetus}</div> 
                 <div>{toode.hind}</div> 
                 <div>{toode.kategooria}</div> 
