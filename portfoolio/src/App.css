@@ -1,3 +1,13 @@
+header {
+  height: 30vh;
+  overflow: hidden;
+}
+
+header img {
+  min-width: 100%;
+  min-height: 100%;
+} 
+
 
 .main-link-list {
   display: flex;
@@ -38,9 +48,9 @@ box-shadow: 0 8px 180px 0px black;
 }
 
 .retangle {
-  height: 7px;
-  width: 60px;
-  background-color: lightgrey;
+  height: 2px;
+  width: 100px;
+  background-color: rgb(158, 148, 148);
   margin: 50px auto;
 }
 .App {
