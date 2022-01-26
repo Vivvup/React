@@ -1,13 +1,18 @@
-import logo from './logo.svg';
 import './App.css';
+import {Routes, Route} from 'react-router-dom';
+import Menyy from './components/Menyy';
+import Tegelased from './pages/Tegelased';
+import Autod from './pages/Autod';
+
 
 function App() {
   return (
     <div className="App">
-   
-       <button className= "buttonStyle">Vaata</button><br/>
-       <text className= "tekst">Sinine tekst</text><br/>
-       <img src="https://uudis.net/media/6/5/6/1613656.jpg" alt= "Ahja"/>
+        <Menyy/> <br/>
+          <Routes>
+            <Route path="/tegelased" exact element={<Tegelased/>} /> 
+            <Route path="/autod" exact element={<Autod/>} />
+          </Routes>
       
     </div>
   );
