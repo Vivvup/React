@@ -8,7 +8,7 @@ function Tegelased() {
     }
 
     function saadaTegelaneKoju() {
-        console.log ("Tegelane läks koju");
+       console.log ("Tegelane läks koju" );
     }
 
 return (
