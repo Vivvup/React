@@ -11,6 +11,9 @@ function Menüü () {
         <Link to="/pakiautomaadid">
           <button className = "menyy-nupp">PAKIAUTOMAADID</button>
         </Link>
+        <Link to="/admin">
+          <button className = "menyy-nupp">ADMIN</button>
+        </Link>
       </div>)
      
 }

@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
-function Kodu() {
+function VaataTooteid () {
+    const [tooted,uuendaTooteid] = useState(saaTooted());
+
     function saaTooted() {
         return [{nimetus: "Coca Cola", hind: 1.5, kategooria: "coca", pilt: "https://www.selver.ee/img/800/800/resize/5/4/54490703.jpg"},
         {nimetus: "Fanta", hind: 1, kategooria: "coca", pilt: "https://www.selver.ee/img/800/800/resize/5/4/54491625.jpg "},
@@ -9,21 +12,29 @@ function Kodu() {
         {nimetus: "Vichy", hind: 1.5, kategooria: "water", pilt: "https://saku.ee/media/18809/ee_vichy-vitamin-sport.png"},];
       }
 
-      function lisaOstukorvi() {
+      function kustutaToode(kustutamiselToode) {
         console.log("t66tab nupuvajutus");
+        console.log(kustutamiselToode);
+        let toodeteMassiiv = tooted.slice();
+        const index = toodeteMassiiv.indexOf(kustutamiselToode);
+        toodeteMassiiv.splice(index,1);
+        uuendaTooteid(toodeteMassiiv);
       }
+
     return (
+    <div>
+        <Link to="/admin">
+          <button >Tagasi</button>
+        </Link>
+
         <div>
-            {saaTooted().map(toode => 
+            {tooted.map(toode => 
             <div  key={toode.nimetus} className="toode">
-                {/*<Link to={`/toode/${toode.nimetus}`}></Link>*/}
-                <Link to={"/toode/" + toode.nimetus.toLowerCase().replace(" ","-")}>
                 <div>{toode.nimetus}</div> 
                 <div>{toode.hind}</div> 
                 <div>{toode.kategooria}</div> 
                 <img src={toode.pilt} alt="" /><br />
-                </Link>
-                <button onClick={lisaOstukorvi}>Lisa ostukorvi</button>
+                <button onClick={() => kustutaToode(toode)}>Kustuta</button>
             </div>)}
             {/*<div>
                 <div>Coca Cola</div> 
@@ -32,11 +43,7 @@ function Kodu() {
                 <img src="https://www.selver.ee/img/800/800/resize/5/4/54490703.jpg" alt="" />
             </div> */}
         </div> 
-    );
+    </div>)
 }
-    //default tähendab, et imporditakse alati terve component
-    //import {Link} from 'react-router-dom'
-    //see tähendab, et Link juures ei olnud default
-    
-    //import Kodu from './pages/Kodu.js'
-export default Kodu;
+
+export default VaataTooteid;
