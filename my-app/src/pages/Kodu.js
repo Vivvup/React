@@ -9,9 +9,24 @@ function Kodu() {
         {nimetus: "Vichy", hind: 1.5, kategooria: "water", pilt: "https://saku.ee/media/18809/ee_vichy-vitamin-sport.png"},];
       }
 
-      function lisaOstukorvi() {
-        console.log("t66tab nupuvajutus");
+      function lisaOstukorvi(lisatavToode) {
+       //"[{},{},{}]".push()--> ostukorv.push is not a function
+       //[{},{},{}].push({...})-->[{},{},{},{...}]
+       
+       if (sessionStorage.getItem("ostukorv")) {
+        const ostukorv = JSON.parse(sessionStorage.getItem("ostukorv"));
+        ostukorv.push(lisatavToode);
+        //console.log(JSON.parse(ostukorv));
+       sessionStorage.setItem("ostukorv", JSON.stringify(ostukorv));
+
+       } else {
+        //[]
+        sessionStorage.setItem("ostukorv", JSON.stringify([lisatavToode]));
+       }
+
+       
       }
+
     return (
         <div>
             {saaTooted().map(toode => 
@@ -23,7 +38,7 @@ function Kodu() {
                 <div>{toode.kategooria}</div> 
                 <img src={toode.pilt} alt="" /><br />
                 </Link>
-                <button onClick={lisaOstukorvi}>Lisa ostukorvi</button>
+                <button onClick={() => lisaOstukorvi(toode)}>Lisa ostukorvi</button>
             </div>)}
             {/*<div>
                 <div>Coca Cola</div> 

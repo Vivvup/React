@@ -23,11 +23,15 @@ function ÜksikToode () {
 
     return (
         <div>
+        {toode &&  // toode !== undefined
+        <div>
             <div> Nimetus: {toode.nimetus}</div>
              <div> Hind: {toode.hind}</div>
             <div> Kategooria: {toode.kategooria}</div>
-            <img src={toode.pilt} alt="" />         
-         </div>
+            <img src={toode.pilt} alt="" /> 
+        </div>}   
+        { !toode && <div> Sellist toodet ei eksisteeri</div> }
+     </div>
     
     );
 }

@@ -35,6 +35,9 @@ function VaataTooteid () {
                 <div>{toode.kategooria}</div> 
                 <img src={toode.pilt} alt="" /><br />
                 <button onClick={() => kustutaToode(toode)}>Kustuta</button>
+                <Link to={"/admin/muuda/" + toode.nimetus.toLowerCase().replace(" ", "-") }>
+                  <button > Muuda </button><br/><br/>
+                 </Link>
             </div>)}
             {/*<div>
                 <div>Coca Cola</div> 
