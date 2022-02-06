@@ -26,10 +26,7 @@ function VaataTegelasi () {
     
 
     return (
-        <div>
-                <Link to="/tegelased">
-                    <button >Tagasi</button>
-                </Link>
+    
 
             <div>
                 {valitudTegelased.map(tegelane => 
@@ -40,8 +37,7 @@ function VaataTegelasi () {
                     <img src={tegelane.pilt} alt="" /><br />
                     <button onClick={() => kustutaTegelane(tegelane)}>Kustuta</button>
                 </div>)}
-            </div> 
-       </div>)
+            </div> )
 }
 
 export default VaataTegelasi;

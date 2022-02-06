@@ -14,7 +14,7 @@ function Tegelased() {
                 {eesnimi:"Roo", perekonnanimi:"Kangaroo", elukoht:"Hundred Acre Wood", vanus:65, pilt: "https://cdn.pixabay.com/photo/2016/06/07/08/39/kangaroo-1441197_960_720.jpg"},
                 {eesnimi:"Scooby", perekonnanimi:"Doo", elukoht:"Crystal Cove", vanus:25, pilt: "https://pixy.org/src/50/505156.jpg"}];
     }
-
+    
     function valiTegelane(tegelane) {
         console.log("Valitud!");
         const tegelased = valitudTegelased.slice();

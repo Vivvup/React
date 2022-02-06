@@ -6,6 +6,8 @@ import Autod from './pages/Autod';
 import LisaTegelane from './pages/LisaTegelane';
 import YksikTegelane from './pages/YksikTegelane';
 import VaataTegelasi from './pages/VaataTegelasi';
+import MuudaKeel from './pages/MuudaKeel';
+import Andmebaas from './pages/Andmebaas';
 
 
 function App() {
@@ -18,6 +20,8 @@ function App() {
             <Route path="/tegelased/tegelased" exact element={<VaataTegelasi/>} /> 
             <Route path="/tegelane/:tegelaseNimi" exact element={<YksikTegelane/>} /> 
             <Route path="/autod" exact element={<Autod/>} />
+            <Route path="/keel" exact element= {<MuudaKeel />} />
+            <Route path="/andmebaas" exact element= {<Andmebaas />} />
           </Routes>
       
     </div>

@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 function YksikTegelane () {
 
     console.log(window.location.href.split("tegelane/"));
@@ -16,14 +18,19 @@ function YksikTegelane () {
                 {eesnimi:"Scooby", perekonnanimi:"Doo", elukoht:"Crystal Cove", vanus:25, pilt: "https://pixy.org/src/50/505156.jpg"}];
     }
 
+   
     return (
         <div>
-            <div> Eesnimi: {tegelane.eesnimi}</div>
-             <div> Perekonnanimi: {tegelane.perekonnanimi}</div>
-            <div> Vanus: {tegelane.vanus}</div><br/>
-            <img src={tegelane.pilt} alt="" />         
+            <Link to="/tegelased">
+            <button>Tagasi tegelaste juurde</button>
+            </Link><br/><br/>
+            <div>
+                <div> Eesnimi: {tegelane.eesnimi}</div>
+                <div> Perekonnanimi: {tegelane.perekonnanimi}</div>
+                <div> Vanus: {tegelane.vanus}</div><br/>
+                <img src={tegelane.pilt} alt="" />         
+            </div>
          </div>
-    
     );
 }
 
