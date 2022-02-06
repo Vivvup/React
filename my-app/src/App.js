@@ -25,7 +25,7 @@ function App() {
         <Route path= "/admin" exact element={ <Admin />} />
         <Route path= "/admin/lisa" exact element={ <LisaToode />} />
         <Route path= "/admin/tooted" exact element={ <VaataTooteid />} />
-        <Route path= "/admin/muuda:tooteNimi" exact element={ <MuudaToode />} />
+        <Route path= "/admin/muuda/:tooteNimi" exact element={ <MuudaToode />} />
         <Route path= "/toode/:tooteNimi" exact element={ <ÜksikToode />} />
       </Routes>
       

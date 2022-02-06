@@ -8,11 +8,11 @@ function MuudaToode() {
     const nimetusRef = useRef();
     const hindRef = useRef();
     const aktiivneRef = useRef ();  
-  // const tooteNimetus = windows.location.href.split("muuda/")[1];
+  // const tooteNimetus2 = windows.location.href.split("muuda/")[1];
   //path "asda/:tooteNimi"
   //vitamin-well
    const {tooteNimi} = useParams();
-   //console.log(tooteNimetus);
+   //console.log(tooteNimetus2);
    //console.log(tooteNimi);
 
 
@@ -49,15 +49,15 @@ function saaTooted() {
         <Link to="/admin/tooted">
           <button>Tagasi</button>
         </Link><br/>
-     {toode &&
-       <div>
-       <label>Toote nimetus</label><br/>
-       <input  ref={nimetusRef} defaultValue= {toode.nimetus} type="text"/><br/>
-       <label>Toote hind</label><br/>
-       <input  ref={hindRef} defaultValue= {toode.hind} type="number"/><br/>
-       <label htmlFor="aktiivne">Toote aktiivne</label><br/>
-       <input ref= {aktiivneRef} defaultValue= {toode.aktiivne} id= "aktiivne" type= "checkbox" /><br/>
-       <button onClick={muudaToode}>Sisesta</button>
+     { toode &&
+      <div>
+        <label>Toote nimetus</label><br/>
+        <input  ref={nimetusRef} defaultValue= {toode.nimetus} type="text" /><br/>
+        <label>Toote hind</label><br/>
+        <input  ref={hindRef} defaultValue= {toode.hind} type="number" /><br/>
+        <label htmlFor="aktiivne">Toote aktiivne</label><br/>
+        <input ref= {aktiivneRef} defaultChecked= {toode.aktiivne} id= "aktiivne" type= "checkbox" /><br/>
+        <button onClick={muudaToode}>Sisesta</button>
      </div>}
     </div>)
 

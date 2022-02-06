@@ -39,12 +39,6 @@ function VaataTooteid () {
                   <button > Muuda </button><br/><br/>
                  </Link>
             </div>)}
-            {/*<div>
-                <div>Coca Cola</div> 
-                <div>1.5</div> 
-                <div>coca</div> 
-                <img src="https://www.selver.ee/img/800/800/resize/5/4/54490703.jpg" alt="" />
-            </div> */}
         </div> 
     </div>)
 }
