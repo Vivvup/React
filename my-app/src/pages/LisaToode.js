@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
-import { useRef } from 'react';
+import {  useRef } from 'react';
 
 function LisaToode () {
 
     const nimetusRef = useRef();
     const hindRef = useRef();
+    const piltRef = useRef();
     const aktiivneRef = useRef ();
 
     function sisestaUusToode() {
@@ -16,6 +17,7 @@ function LisaToode () {
         const toode = {
             nimetus: nimetusRef.current.value,
             hind: hindRef.current.value,
+            pilt: piltRef.current.value,
             aktiivne: aktiivneRef.current.checked
         }
         console.log (toode);
@@ -37,6 +39,8 @@ function LisaToode () {
        <input  ref={nimetusRef} type="text"/><br/>
        <label>Toote hind</label><br/>
        <input  ref={hindRef} type="number"/><br/>
+       <label>Toote pilt</label><br />
+        <input ref={piltRef} type="text" /><br />
        <label htmlFor="aktiivne">Toote aktiivne</label><br/>
        <input ref= {aktiivneRef} id= "aktiivne" type= "checkbox" /><br/>
        <button onClick={sisestaUusToode}>Sisesta</button>

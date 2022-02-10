@@ -73,16 +73,18 @@ function Ostukorv() {
             }
         }
     ).then(res => res.json())
-    .then(data => console.log (data.payment_link));
+    // .then(data => console.log (data.payment_link));
+    .then (data => window.location.href = data.payment_link);
   }
     return (
     <div>
         {ostukorviEsemed.length !== 0 && <button onClick={tyhjendaOstukorv}>Tühjenda ostukorv</button>}
         {ostukorviEsemed.map (element =>
-        <div>
+        <div className="toode">
             
             <div>{element.nimetus}</div>
-            <div>{element.hind}</div>
+            <div>{element.hind} eur</div>
+            <img src={element.pilt} alt="" />
             <div>{element.aktiivne}</div>
             <button onClick={() => lisaOstukorvi (element)}>+</button>
             <button onClick={() => kustutaOstukorvist (element)}>X</button>
@@ -90,8 +92,8 @@ function Ostukorv() {
 
         </div> )
     } 
-   {ostukorviEsemed.length !== 0 && <div>Kokku: {ostukorviSumma()}</div>}
-   {ostukorviEsemed.length !== 0 && <button onClick = {maksa}>Maksma</button>}
+   {ostukorviEsemed.length !== 0 && <div>Kokku: {ostukorviSumma()} eur</div>}
+   {ostukorviEsemed.length !== 0 && <button className = "red" onClick = {maksa}>Maksma</button>}
    {ostukorviEsemed.length === 0 && <div>Ostukorv on tühi!</div>}
     </div> );
 }
