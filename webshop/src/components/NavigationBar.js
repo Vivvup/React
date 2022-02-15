@@ -10,6 +10,11 @@ function NavigationBar () {
     //t-tõlkimiseks
     //i18n-keele vahetamiseks
     const { t, i18n } = useTranslation();
+
+    function changeLang(language) {
+        i18n.changeLanguage(language);
+        localStorage.setItem("language",language);
+    }
   
 
     return (
@@ -20,8 +25,9 @@ function NavigationBar () {
             <Nav.Link as={Link} to ='/admin'>{t('admin-button')}</Nav.Link>
             <Nav.Link as={Link} to ='/ostukorv'>{t('cart-button')}</Nav.Link>
         </Nav>
-        <button onClick= {() => i18n.changeLanguage('en')}>EN</button>
-        <button onClick= {() => i18n.changeLanguage('ee')}>EE</button>
+        <img className="lang-flag" alt="" src="/language/united-kingdom.png" onClick= {() => changeLang ('en')} />
+        <img className="lang-flag" alt="" src="/language/estonia.png" onClick= {() => changeLang('ee')} />
+        <img className="lang-flag" alt="" src="/language/russia.png" onClick= {() => changeLang('ru')} />
         </Container>
     </Navbar>);
 }

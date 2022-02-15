@@ -10,7 +10,9 @@ function VaataTooteid () {
           return response.json();
       }). then (data => {
           console.log(data)
+          //{võti: {toode1}, võti:{toode2}}
           //forin
+          //[]--> [{toode1}]-->[{toode1},{toode2}]
           const newArray = [];
           for (const key in data) {
               newArray.push(data[key]);

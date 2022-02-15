@@ -8,6 +8,7 @@ import YksikTegelane from './pages/YksikTegelane';
 import VaataTegelasi from './pages/VaataTegelasi';
 import MuudaKeel from './pages/MuudaKeel';
 import Andmebaas from './pages/Andmebaas';
+import JsonPlaceholder from './pages/JsonPlaceholder';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
             <Route path="/autod" exact element={<Autod/>} />
             <Route path="/keel" exact element= {<MuudaKeel />} />
             <Route path="/andmebaas" exact element= {<Andmebaas />} />
+            <Route path="/jsonplaceholder" exact element= {<JsonPlaceholder />} />
           </Routes>
       
     </div>

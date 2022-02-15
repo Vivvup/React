@@ -6,6 +6,7 @@ function LisaTegelane() {
     const eesnimiRef = useRef();
     const perekonnanimiRef = useRef();
     const vanusRef = useRef();
+    const piltRef = useRef();
   
 
     function sisestaUusTegelane() {
@@ -18,9 +19,18 @@ function LisaTegelane() {
         const tegelane = {
             eesnimi: eesnimiRef.current.value,
             perekonnanimi: perekonnanimiRef.current.value,
-            vanus: vanusRef.current.value
+            vanus: vanusRef.current.value,
+            pilt: piltRef.current.value
         }
         console.log (tegelane);
+        fetch ("https://ylesanded-e629f-default-rtdb.europe-west1.firebasedatabase.app/tegelased.json", 
+            {
+                method: "POST", 
+                body: JSON.stringify(tegelane)
+
+            }
+        
+        );
     }
     return (
     <div>
@@ -33,6 +43,8 @@ function LisaTegelane() {
        <input  ref={perekonnanimiRef} type="text"/><br/>
        <label>Tegelase vanus</label><br/>
        <input  ref={vanusRef} type="number"/><br/>
+       <label>Tegelase pilt</label><br/>
+       <input  ref={piltRef} type="text"/><br/><br/>
        <button onClick={sisestaUusTegelane}>Sisesta</button>
        
     </div>)
