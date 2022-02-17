@@ -33,8 +33,9 @@ function Home(){
     // []  --> [{cartProduct:{name: "sadas", price: 4,...},quantity:1}]
 
      function onAddCart(product) {
+        let cartProducts; //let muutujale saab anda uuesti väärtuse
          if (sessionStorage.getItem("cart")) {
-             const cartProducts = JSON.parse(sessionStorage.getItem("cart"));
+             cartProducts = JSON.parse(sessionStorage.getItem("cart"));
              const index = cartProducts.findIndex(element => element.cartProduct.name === product.name)
             if(index !== -1) {
                 cartProducts[index].quantity++; //suurenda quantity't
@@ -42,11 +43,12 @@ function Home(){
                     //push
                 cartProducts.push({cartProduct: product, quantity: 1});
             }
-            sessionStorage.getItem("cart", JSON.stringify(cartProducts));
+            sessionStorage.setItem("cart", JSON.stringify(cartProducts));
          } else {
-            const cartProducts = [{cartProduct: product, quantity: 1}];
-            sessionStorage.setItem("cart",JSON.stringify(cartProducts));
+            cartProducts = [{cartProduct: product, quantity: 1}];
+           
          }
+         sessionStorage.setItem("cart",JSON.stringify(cartProducts));
      }
     
     return (<div>{products.map(element=> <div> 

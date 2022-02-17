@@ -19,7 +19,7 @@ function Kodu() {
            }
         );
 
-     },[])   //et ei läheks lõputusse loopi
+     },[])  
     
     // function saaTooted() {
 
@@ -31,27 +31,25 @@ function Kodu() {
     //  }
 
       function lisaOstukorvi(lisatavToode) {
-       //"[{},{},{}]".push()--> ostukorv.push is not a function
-       //[{},{},{}].push({...})-->[{},{},{},{...}]
-       
-       if (sessionStorage.getItem("ostukorv")) {
-        const ostukorv = JSON.parse(sessionStorage.getItem("ostukorv"));
-        ostukorv.push(lisatavToode);
-        //console.log(JSON.parse(ostukorv));
-       sessionStorage.setItem("ostukorv", JSON.stringify(ostukorv));
-
+         if (sessionStorage.getItem("ostukorv")) {
+             const ostukorviTooted = JSON.parse(sessionStorage.getItem("ostukorv"));
+             const index = ostukorviTooted.findIndex(toode => toode.ostukorviToode.nimetus === toode.nimetus)
+             if(index !== -1) {
+                ostukorviTooted[index].kogus++;
+             } else {
+                ostukorviTooted.push({ostukorviToode: lisatavToode, kogus: 1});
+            }
+            sessionStorage.setItem("ostukorv", JSON.stringify(ostukorviTooted));
        } else {
-        //[]
-        sessionStorage.setItem("ostukorv", JSON.stringify([lisatavToode]));
-       }
-
-       
+        const ostukorviTooted = [{ostukorviToode: lisatavToode, kogus: 1}];
+        sessionStorage.setItem("ostukorv", JSON.stringify(ostukorviTooted));
+       } 
       }
 
     return (
         <div>
             {tooted.map(toode => 
-            <div  key={toode.nimetus} className="toode">
+            <div className="toode">
                 {/*<Link to={`/toode/${toode.nimetus}`}></Link>*/}
                 <Link to={"/toode/" + toode.nimetus.toLowerCase().replace(" ","-")}>
                 <div>{toode.nimetus}</div> 
