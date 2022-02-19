@@ -3,7 +3,7 @@ import './App.css';
 import NavigationBar from './components/NavigationBar';
 import Home from './pages/Home';
 import Cart from './pages/Cart';
-import AdminHome from './pages/Admin/AdminHome';
+import AdminHome from './pages/admin/AdminHome';
 import PaymentCompleted from './pages/PaymentCompleted';
 
 

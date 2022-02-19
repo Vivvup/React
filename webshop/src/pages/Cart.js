@@ -16,19 +16,19 @@ const [cartProducts, setCartProducts] = useState(getCart());
       function onDecreaseQuantity(product) {
         product.quantity--;
         if (product.quantity === 0){
-          onRemoveCart(product);
+          onRemoveFromCart(product);
         }
         setCartProducts(cartProducts.slice());
         sessionStorage.setItem("cart",JSON.stringify(cartProducts));
       }
 
-      function onincreaseQuantity (product) {
+      function onIncreaseQuantity (product) {
         product.quantity++;
         setCartProducts(cartProducts.slice());
         sessionStorage.setItem("cart",JSON.stringify(cartProducts));
       }
 
-      function onRemoveCart(product) {
+      function onRemoveFromCart(product) {
         const index = cartProducts.indexOf(product); //IndexOf saab kasutada, kui on täpselt identne toode,
         //millele ma indexit otsin ja indexOf sulgude sisse panen ka otsitavas
         //massiivis. See hõlmab ka mälukohta. Kui ei ole sama mälukoht, siis kasutan findIndex
@@ -92,9 +92,9 @@ const [cartProducts, setCartProducts] = useState(getCart());
         <div>{element.cartProduct.price} €</div>
         <button onClick= {() => onDecreaseQuantity(element)}>-</button>
         <div>{element.quantity} tk</div>
-        <button onClick= {() => onincreaseQuantity(element)}>+</button>
+        <button onClick= {() => onIncreaseQuantity(element)}>+</button>
         <div>KOKKU: {element.cartProduct.price * element.quantity} €</div>
-        <button onClick= {() => onRemoveCart(element)}>X</button>
+        <button onClick= {() => onRemoveFromCart(element)}>X</button>
         <br /><br />
       </div>)}
          { cartProducts.length > 0 && <div>{calculateSumOfCart()}</div> }

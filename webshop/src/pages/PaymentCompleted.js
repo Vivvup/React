@@ -28,7 +28,7 @@ function PaymentCompleted() {
             setMessage("Makse ebaõnnestus");
           }
         })
-    },[])
+    })
   
     return (<div>{ message }</div>)
   }

@@ -17,38 +17,32 @@ function Ostukorv() {
         }
     }
 
-    function lisaOstukorvi (toode) {
-        console.log("ostukorvi lisatud!");
-        console.log(toode);
-        const tooted = ostukorviEsemed.slice();
-        console.log(tooted);
-        tooted.push(toode);
-        console.log(tooted);
-        sessionStorage.setItem("ostukorv", JSON.stringify(tooted));
-        uuendaOstukorvi (tooted);
+    function lisaOstukorviKogust (toode) {
+        toode.kogus++;
+        uuendaOstukorvi(ostukorviEsemed.slice());
+        sessionStorage.setItem("ostukorv", JSON.stringify(ostukorviEsemed));
     }
 
-    function kustutaOstukorvist(toode) {
-        console.log("ostukorvist kustutatud!");
-        console.log(toode);
-        let tooted = ostukorviEsemed.slice();
-        let indeks = tooted.indexOf(toode);
-        if (indeks !== -1) {
-        tooted.splice(indeks,1);
-        sessionStorage.setItem("ostukorv", JSON.stringify(tooted));
-        uuendaOstukorvi (tooted);
+    function v2hendaOstukorvistKogust(toode) {
+        toode.kogus--;
+        if (toode.kogus === 0) {
+            tyhjendaOstukorv(toode);
         }
+        uuendaOstukorvi (ostukorviEsemed.slice());
+        sessionStorage.setItem("ostukorv", JSON.stringify(ostukorviEsemed));   
     }
 
-        function tyhjendaOstukorv() {
-            const tooted = [];
-            sessionStorage.setItem("ostukorv", JSON.stringify(tooted));
-            uuendaOstukorvi (tooted);
+        function tyhjendaOstukorv(toode) {
+            const indeks = ostukorviEsemed.indexOf(toode);
+            ostukorviEsemed.splice(indeks,1);
+            uuendaOstukorvi(ostukorviEsemed.slice());
+            sessionStorage.setItem("ostukorv", JSON.stringify(ostukorviEsemed));
+            
         }
 
         function ostukorviSumma() {
             let summa = 0;
-            ostukorviEsemed.forEach (element => summa += Number(element.hind));
+            ostukorviEsemed.forEach (element => summa += element.ostukorviToode.hind * element.kogus);
             return summa;
         }
 
@@ -57,7 +51,7 @@ function Ostukorv() {
               "api_username": "92ddcfab96e34a5f",
               "account_name": "EUR3D1",
               "amount": ostukorviSumma (),
-              "order_reference": "624233",
+              "order_reference": Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000,
               "nonce": "a9b7f7e79asdareds97d83154a01b9902" + new Date(),
               "timestamp": new Date (),
               "customer_url": "https://www.postimees.ee"
@@ -82,13 +76,15 @@ function Ostukorv() {
         {ostukorviEsemed.map (element =>
         <div className="toode">
             
-            <div>{element.nimetus}</div>
-            <div>{element.hind} eur</div>
-            <img src={element.pilt} alt="" />
-            <div>{element.aktiivne}</div>
-            <button onClick={() => lisaOstukorvi (element)}>+</button>
-            <button onClick={() => kustutaOstukorvist (element)}>X</button>
-        
+            <div>{element.ostukorviToode.nimetus}</div>
+            <div>{element.ostukorviToode.hind} €</div>
+            <img src= {element.ostukorviToode.pilt} /><br />
+            <button onClick={() => v2hendaOstukorvistKogust (element)}>-</button>
+            <div>{element.kogus} tk</div>
+            <button onClick={() => lisaOstukorviKogust (element)}>+</button>
+            <div>KOKKU: {element.ostukorviToode.hind * element.kogus} € </div>
+            <button onClick={() => tyhjendaOstukorv (element)}>X</button>
+            <br /><br />
 
         </div> )
     } 
