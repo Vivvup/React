@@ -6,15 +6,15 @@ function PackageMachines () {
 
     useEffect(()=>{
         fetch ("https://www.omniva.ee/locations.json")
-        .then(res => res.json())
-        .then (body => setPackageMachines(body));
+        .then(res => res.json()) // koos statuscode-ga, headeritega, url-ga..... {console.log(res); res.json()}
+        .then (body => setPackageMachines(body));  // sisu kätte
 
     },[]);
 
-    function chooseMachine (packageMachine) {
+    function chooseMachine (event) {
         console.log(selectedMachine);
-        console.log(packageMachine);
-        setSelectedMachines(packageMachine);
+        //console.log(packageMachine);
+        setSelectedMachines(event.target.value);
         console.log(selectedMachine);
 
     }
@@ -25,9 +25,9 @@ function PackageMachines () {
     
     return (
         <div>
-        { !selectedMachine && <select>{packageMachines
+        { !selectedMachine && <select onChange={chooseMachine}>{packageMachines
             .filter(element => element.A0_NAME == "EE")
-            .map(element => <option onClick={() => chooseMachine(element)}>{element.NAME}</option> )}</select>
+            .map(element => <option>{element.NAME}</option> )}</select>
         }
     { selectedMachine && <div>{selectedMachine} <button onClick={deleteMachine}>X</button></div> }
     </div>);
