@@ -50,10 +50,21 @@ margin-right: 10%;
     border: none;
     padding: 10px;
     border-radius: 5px;
-    width: 80px;
+    background-color: red;
 
 }
 .cartSum button:hover {
  font-weight: bold;
     
+}
+.paymentButton {
+    width: 80px;
+    background-color: lightgrey !important;
+
+}
+.buttonDisabled {
+    width: 20px;
+    height: 20px;
+    opacity: 0.4;
+
 }

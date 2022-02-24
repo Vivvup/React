@@ -31,14 +31,26 @@ const [cartProducts, setCartProducts] = useState(getCart());
       }
 
       function onRemoveFromCart(product) {
-        const index = cartProducts.indexOf(product); //IndexOf saab kasutada, kui on täpselt identne toode,
-        //millele ma indexit otsin ja indexOf sulgude sisse panen ka otsitavas
-        //massiivis. See hõlmab ka mälukohta. Kui ei ole sama mälukoht, siis kasutan findIndex
-        //funktsiooni või otsin mingite kindlate omaduste alusel (kasutan otsimiseks ID-d või nime)
-        cartProducts.splice(index,1);
-        setCartProducts(cartProducts.slice());
-        sessionStorage.setItem("cart",JSON.stringify(cartProducts));
-        
+        if (!isParcelMachine(product)) {
+          const index = cartProducts.indexOf(product); //IndexOf saab kasutada, kui on täpselt identne toode,
+          //millele ma indexit otsin ja indexOf sulgude sisse panen ka otsitavas
+          //massiivis. See hõlmab ka mälukohta. Kui ei ole sama mälukoht, siis kasutan findIndex
+          //funktsiooni või otsin mingite kindlate omaduste alusel (kasutan otsimiseks ID-d või nime)
+          cartProducts.splice(index,1);
+          //const packageMachineIndex = cartProducts.findIndex(element => element.cartProduct.id === "11110000");
+          if (cartProducts.length === 1 && isParcelMachine(cartProducts[0])) {
+            setCartProducts([]);
+            sessionStorage.setItem("cart",JSON.stringify([]));
+            sessionStorage.removeItem("parcelmachine");
+          } else {
+            setCartProducts(cartProducts.slice());
+          }
+          setCartProducts(cartProducts.slice());
+          sessionStorage.setItem("cart",JSON.stringify(cartProducts));
+          
+          
+        }
+    
       }
 
       function calculateSumOfCart(){
@@ -89,28 +101,39 @@ const [cartProducts, setCartProducts] = useState(getCart());
 .then (data => window.location.href = data.payment_link);
 }
 
+function isParcelMachine(parcelMachine){
+  return parcelMachine.cartProduct.id === "11110000";
+}
 
       return (
       <div>
       
-        <div>{cartProducts.map(element => <div className={styles.cartItem}>
+        <div>{cartProducts.map((element) => <div className={styles.cartItem}>
         <div className={styles.cartItemName}>{element.cartProduct.name}</div>
         <div className={styles.cartItemPrice}>{element.cartProduct.price} €</div>
         <div className={styles.cartItemQuantityControls}>
-          <img className={styles.cartItemButton} onClick= {() => onDecreaseQuantity(element)} src="/cart/minus.png"/>
+          { !isParcelMachine (element) && <img className={styles.cartItemButton} onClick= {() => onDecreaseQuantity(element)} src="/cart/minus.png" alt=""/>}
           <div className={styles.cartItemQuantity}>{element.quantity} tk</div>
-          <img className={styles.cartItemButton} onClick= {() => onIncreaseQuantity(element)} src="/cart/plus.png"/>
+          { !isParcelMachine (element)  && <img className={styles.cartItemButton} onClick= {() => onIncreaseQuantity(element)} src="/cart/plus.png"alt=""/>}
         </div>
         <div className={styles.cartItemTotal}>{element.cartProduct.price * element.quantity} €</div>
-        <img className={styles.cartItemButton} onClick= {() => onRemoveFromCart(element)} src="/cart/trash.png"/>
+
+        <img className={ isParcelMachine (element) ? 
+                 styles.buttonDisabled:
+                 styles.cartItemButton}
+         onClick= {() => onRemoveFromCart(element)} 
+         src="/cart/trash.png" 
+         alt="" />
+      
       
       </div>)}
          { cartProducts.length > 0 && <div className={styles.cartSum}>
+         <PackageMachines cartContent={cartProducts} sendProducts = {setCartProducts}/>
          <div>{calculateSumOfCart()} €</div>
-         <button onClick = {onPay}>Maksa</button> 
+         <button className={styles.paymentButton} onClick = {onPay}>Maksa</button> 
          </div>}
       </div>
-      <PackageMachines />
+     
       </div>
       )
 }

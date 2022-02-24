@@ -41,7 +41,14 @@ function Home(){
                 cartProducts[index].quantity++; //suurenda quantity't
             } else {
                     //push
-                cartProducts.push({cartProduct: product, quantity: 1});
+                const packageMachineIndex = cartProducts.findIndex(element => element.cartProduct.id === "11110000");
+                console.log(packageMachineIndex);
+                if(packageMachineIndex === -1){
+                    cartProducts.push({cartProduct: product, quantity: 1});
+                } else {
+                    cartProducts.splice(cartProducts.length-1,0,{cartProduct: product, quantity: 1});
+                }
+                
             }
             sessionStorage.setItem("cart", JSON.stringify(cartProducts));
          } else {
