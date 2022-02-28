@@ -7,9 +7,8 @@ function ViewProduct(){
 
     useEffect(() => {
       fetch ("https://webshop-vp-default-rtdb.europe-west1.firebasedatabase.app/products.json")
-      .then(response => {
-          return response.json();
-      }). then (data => {
+      .then(response => response.json())
+      .then (data => {
           console.log(data)
           const newArray = [];
           for (const key in data) {
@@ -39,7 +38,6 @@ function ViewProduct(){
         <Link to="/admin">
           <button >Tagasi</button>
         </Link>
-
         <div>
             {products.map(product => 
             <div className="product">

@@ -7,7 +7,7 @@ function SingleProducts(){
     console.log(window.location.href.split("toode/"));
     console.log(window.location.href.split("toode/")[1]);
 
-    const  tooteNimi = window.location.href.split("toode/")[1];
+    const tooteNimi = window.location.href.split("toode/")[1];
 
     const product = products.find(element => 
         element.name.toLowerCase().replace(" ","-") === tooteNimi);

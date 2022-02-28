@@ -7,7 +7,6 @@ function Cart(){
 const [cartProducts, setCartProducts] = useState(getCart());
 
     function getCart() {
-
         if (sessionStorage.getItem("cart")) {
           return JSON.parse(sessionStorage.getItem("cart"));
         } else {
@@ -47,10 +46,7 @@ const [cartProducts, setCartProducts] = useState(getCart());
           }
           setCartProducts(cartProducts.slice());
           sessionStorage.setItem("cart",JSON.stringify(cartProducts));
-          
-          
         }
-    
       }
 
       function calculateSumOfCart(){
@@ -107,7 +103,6 @@ function isParcelMachine(parcelMachine){
 
       return (
       <div>
-      
         <div>{cartProducts.map((element) => <div className={styles.cartItem}>
         <div className={styles.cartItemName}>{element.cartProduct.name}</div>
         <div className={styles.cartItemPrice}>{element.cartProduct.price} €</div>
@@ -117,15 +112,12 @@ function isParcelMachine(parcelMachine){
           { !isParcelMachine (element)  && <img className={styles.cartItemButton} onClick= {() => onIncreaseQuantity(element)} src="/cart/plus.png"alt=""/>}
         </div>
         <div className={styles.cartItemTotal}>{element.cartProduct.price * element.quantity} €</div>
-
-        <img className={ isParcelMachine (element) ? 
+       <img className={ isParcelMachine (element) ? 
                  styles.buttonDisabled:
                  styles.cartItemButton}
          onClick= {() => onRemoveFromCart(element)} 
          src="/cart/trash.png" 
          alt="" />
-      
-      
       </div>)}
          { cartProducts.length > 0 && <div className={styles.cartSum}>
          <PackageMachines cartContent={cartProducts} sendProducts = {setCartProducts}/>
@@ -133,7 +125,6 @@ function isParcelMachine(parcelMachine){
          <button className={styles.paymentButton} onClick = {onPay}>Maksa</button> 
          </div>}
       </div>
-     
       </div>
       )
 }

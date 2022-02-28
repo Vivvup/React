@@ -12,6 +12,7 @@ import SingleProduct from './pages/SingleProduct';
 
 
 
+
 function App() {
   return ( 
   <div> 
