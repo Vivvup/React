@@ -1,16 +1,14 @@
 import { useEffect, useState} from 'react';
 
 function SingleProducts(){
-
     const [products,setProducts] = useState([]);
 
     console.log(window.location.href.split("toode/"));
     console.log(window.location.href.split("toode/")[1]);
 
-    const tooteNimi = window.location.href.split("toode/")[1];
+    const productId = window.location.href.split("toode/")[1];
 
-    const product = products.find(element => 
-        element.name.toLowerCase().replace(" ","-") === tooteNimi);
+    const product = products.find(element => element.id.toString() === productId);
     console.log(product);
 
     useEffect(() => {
@@ -32,9 +30,10 @@ function SingleProducts(){
   
      },[]) 
 
-
-    return (<div>
-         {product &&  
+     
+    return(
+    <div>
+        {product &&  
         <div>
             <div> Nimetus: {product.name}</div>
              <div> Hind: {product.price}</div>

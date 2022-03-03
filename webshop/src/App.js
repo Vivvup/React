@@ -11,8 +11,6 @@ import EditProduct from './pages/admin/EditProduct';
 import SingleProduct from './pages/SingleProduct';
 
 
-
-
 function App() {
   return ( 
   <div> 
@@ -24,8 +22,8 @@ function App() {
       <Route path = '/tellimus' exact element = {<PaymentCompleted />} />
       <Route path= "/admin/lisa" exact element={ <AddProduct />} />
       <Route path= "/admin/tooted" exact element={ <ViewProducts />} />
-      <Route path= "/admin/muuda/:tooteNimi" exact element={ <EditProduct />} />
-       <Route path= "/toode/:tooteNimi" exact element={ <SingleProduct />} />
+      <Route path= "/admin/muuda/:productId" exact element={ <EditProduct />} />
+       <Route path= "/toode/:productId" exact element={ <SingleProduct />} />
     </Routes> 
   </div>
   );

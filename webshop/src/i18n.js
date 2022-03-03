@@ -9,21 +9,28 @@ const resources = {
     translation: {
       "cart-button": "Cart",
       "admin-button": "To admin view",
-      "add-to-cart-button": "Add to cart"
+      "add-to-cart-button": "Add to cart",
+      "delete-product-button": "Delete",
+      "edit-product-button": "Edit"
+  
     }
   },
   ee: {
     translation: {
       "cart-button": "Ostukorvi",
       "admin-button": "Administraatori vaatesse",
-      "add-to-cart-button": "Lisa ostukorvi"
+      "add-to-cart-button": "Lisa ostukorvi",
+      "delete-product-button": "Kustuta",
+      "edit-product-button": "Muuda"
     }
   },
   ru: {
     translation: {
       "cart-button": " RU Cart",
       "admin-button": " RU To admin view",
-      "add-to-cart-button": " RU Add to cart"
+      "add-to-cart-button": " RU Add to cart",
+      "delete-product-button": "RU Delete",
+      "edit-product-button": "RU Edit"
     }
   }
 };

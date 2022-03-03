@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Link } from 'react-router-dom';
 
-function Product (props) {
+function Product(props) {
     const {t} = useTranslation();
 
     function onAddToCart(product) {
@@ -12,7 +12,6 @@ function Product (props) {
             if (index !== -1) {
                 cartProducts[index].quantity++; //suurenda quantity't
             } else {
-                    //push
                 const packageMachineIndex = cartProducts.findIndex(element => element.cartProduct.id === "11110000");
                 console.log(packageMachineIndex);
                 if(packageMachineIndex === -1){
@@ -31,12 +30,12 @@ function Product (props) {
      }
 
     return (<div>
-            <Link to={"/toode/" + props.product.name.toLowerCase().replace(" ","-")}>
+            <Link to={"/toode/" + props.product.id}>
             <div>{props.product.name}</div>
             <img src = {props.product.imgSrc} alt="" />
             <div>{props.product.price} €</div>
             </Link>
-             <button onClick= {() => onAddToCart(props.products)}> {t("add-to-cart-button")}</button>
+             <button onClick= {() => onAddToCart(props.product)}> {t("add-to-cart-button")}</button>
     </div>)
 }
 export default Product;

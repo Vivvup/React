@@ -12,3 +12,17 @@ input::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance:textfield;
 } 
+body {
+    margin:20px;
+}
+.sort-buttons {
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.search input {
+    margin-bottom: 20px;
+    background-color:beige;
+
+  
+}

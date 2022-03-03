@@ -44,7 +44,7 @@ function AddProduct(){
             description: descriptionRef.current.value,
             price: priceRef.current.value,
             imgSrc: imgSrcRef.current.value,
-            active: true
+            isActive: true
         }
         console.log (product);
         fetch ("https://webshop-vp-default-rtdb.europe-west1.firebasedatabase.app/products.json", 
@@ -65,8 +65,7 @@ function AddProduct(){
     function checkIdUniqueness () {
         console.log(idRef.current.value);
         if(idRef.current.value.length === 8){
-
-             const index = products.findIndex( element => element.id === idRef.current.value);
+             const index = products.findIndex(element => element.id === idRef.current.value);
              if(index === -1){
                 console.log("Unikaalne!");
                 setButtonDisabled(false);

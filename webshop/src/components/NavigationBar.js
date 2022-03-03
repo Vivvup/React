@@ -18,7 +18,7 @@ function NavigationBar () {
   
 
     return (
-    <Navbar bg="dark" variant="dark">
+    <Navbar className= "space" bg="dark" variant="dark">
         <Container>
         <Navbar.Brand  as={Link} to ='/'><img className = 'logo' alt = 'main logo' src = '/webshou.png' /></Navbar.Brand>
         <Nav className="me-auto">
