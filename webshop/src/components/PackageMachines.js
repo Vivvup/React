@@ -48,7 +48,7 @@ function PackageMachines (props) {
         <div>
         { !selectedMachine && <select onChange={chooseMachine}>{packageMachines
             .filter(element => element.A0_NAME == "EE")
-            .map(element => <option>{element.NAME}</option> )}</select>
+            .map(element => <option key={element.ZIP}>{element.NAME}</option> )}</select>
         }
     { selectedMachine && <div>{selectedMachine} <button onClick={deleteMachine}>X</button></div> }
     </div>);

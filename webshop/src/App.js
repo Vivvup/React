@@ -9,6 +9,8 @@ import AddProduct from './pages/admin/AddProduct';
 import ViewProducts from './pages/admin/ViewProducts';
 import EditProduct from './pages/admin/EditProduct';
 import SingleProduct from './pages/SingleProduct';
+import NotFound from './pages/NotFound';
+import Login from './pages/auth/Login';
 
 
 function App() {
@@ -24,6 +26,8 @@ function App() {
       <Route path= "/admin/tooted" exact element={ <ViewProducts />} />
       <Route path= "/admin/muuda/:productId" exact element={ <EditProduct />} />
        <Route path= "/toode/:productId" exact element={ <SingleProduct />} />
+       <Route path = '/logi-sisse' exact element = {<Login />} />
+       <Route path= "*" exact element={ <NotFound />} />
     </Routes> 
   </div>
   );

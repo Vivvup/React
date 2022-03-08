@@ -1,10 +1,14 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import PackageMachines from "../components/PackageMachines";
+import Payment from "../components/Payments";
+import { cartSumService } from '../services/CartSumService';
 import styles from "./Cart.module.css";
+
 
 function Cart(){
 
 const [cartProducts, setCartProducts] = useState(getCart());
+const[cartSum, setCartSum] = useState(0);
 
     function getCart() {
         if (sessionStorage.getItem("cart")) {
@@ -20,12 +24,14 @@ const [cartProducts, setCartProducts] = useState(getCart());
           onRemoveFromCart(product);
         }
         setCartProducts(cartProducts.slice());
+        cartSumService.sendCartSum(cartSum);
         sessionStorage.setItem("cart",JSON.stringify(cartProducts));
       }
 
       function onIncreaseQuantity (product) {
         product.quantity++;
         setCartProducts(cartProducts.slice());
+        
         sessionStorage.setItem("cart",JSON.stringify(cartProducts));
       }
 
@@ -48,12 +54,12 @@ const [cartProducts, setCartProducts] = useState(getCart());
           sessionStorage.setItem("cart",JSON.stringify(cartProducts));
         }
       }
-
-      function calculateSumOfCart(){
+      useEffect(() =>{
         let sumOfCart = 0;
         cartProducts.forEach(element => sumOfCart += element.cartProduct.price * element.quantity);
-        return sumOfCart;
-      }
+        setCartSum(sumOfCart.toFixed(2));
+        cartSumService.sendCartSum(sumOfCart.toFixed(2));
+      },[cartProducts]);
 
       // function getFirebaseOrdercount(){
 
@@ -72,30 +78,7 @@ const [cartProducts, setCartProducts] = useState(getCart());
       //   return ordersLength + 100000;
       // }
 
-      function onPay() {
-        const paymentData = {
-          "api_username": "92ddcfab96e34a5f",
-          "account_name": "EUR3D1",
-          "amount": calculateSumOfCart(),
-          "order_reference": Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000,
-          "nonce": "a9b7f7e79asdareds97d83154a01b9902" + new Date(),
-          "timestamp": new Date (),
-          "customer_url": "https://www.webshopvp.web.app/tellimus"
-          };
-
-    fetch("https://igw-demo.every-pay.com/api/v4/payments/oneoff",
-     {
-        method: "POST",
-        body: JSON.stringify(paymentData),
-        headers: {
-        "Content-Type": "application/json",   
-        "Authorization": "Basic OTJkZGNmYWI5NmUzNGE1Zjo4Y2QxOWU5OWU5YzJjMjA4ZWU1NjNhYmY3ZDBlNGRhZA=="
-        }
-    }
-).then(res => res.json())
-// .then(data => console.log (data.payment_link));
-.then (data => window.location.href = data.payment_link);
-}
+     
 
 function isParcelMachine(parcelMachine){
   return parcelMachine.cartProduct.id === "11110000";
@@ -103,15 +86,15 @@ function isParcelMachine(parcelMachine){
 
       return (
       <div>
-        <div>{cartProducts.map((element) => <div className={styles.cartItem}>
+        <div>{cartProducts.map((element) => <div key={element.cartProduct.id} className={styles.cartItem}>
         <div className={styles.cartItemName}>{element.cartProduct.name}</div>
-        <div className={styles.cartItemPrice}>{element.cartProduct.price} €</div>
+        <div className={styles.cartItemPrice}>{Number(element.cartProduct.price).toFixed(2)} €</div>
         <div className={styles.cartItemQuantityControls}>
           { !isParcelMachine (element) && <img className={styles.cartItemButton} onClick= {() => onDecreaseQuantity(element)} src="/cart/minus.png" alt=""/>}
           <div className={styles.cartItemQuantity}>{element.quantity} tk</div>
           { !isParcelMachine (element)  && <img className={styles.cartItemButton} onClick= {() => onIncreaseQuantity(element)} src="/cart/plus.png"alt=""/>}
         </div>
-        <div className={styles.cartItemTotal}>{element.cartProduct.price * element.quantity} €</div>
+        <div className={styles.cartItemTotal}>{Number(element.cartProduct.price * element.quantity).toFixed(2)} €</div>
        <img className={ isParcelMachine (element) ? 
                  styles.buttonDisabled:
                  styles.cartItemButton}
@@ -121,8 +104,8 @@ function isParcelMachine(parcelMachine){
       </div>)}
          { cartProducts.length > 0 && <div className={styles.cartSum}>
          <PackageMachines cartContent={cartProducts} sendProducts = {setCartProducts}/>
-         <div>{calculateSumOfCart()} €</div>
-         <button className={styles.paymentButton} onClick = {onPay}>Maksa</button> 
+         <div>{cartSum} €</div>
+       <Payment sumOfCart={cartSum}/>
          </div>}
       </div>
       </div>

@@ -1,8 +1,12 @@
 import { useTranslation } from "react-i18next";
 import { Link } from 'react-router-dom';
+import { cartSumService } from '../services/CartSumService';
 
 function Product(props) {
     const {t} = useTranslation();
+    const productName = props.product.name;
+    const productImg = props.product.imgSrc;
+    const productPrice = Number(props.product.price).toFixed(2);
 
     function onAddToCart(product) {
         let cartProducts; //let muutujale saab anda uuesti väärtuse
@@ -25,15 +29,18 @@ function Product(props) {
             cartProducts = [{cartProduct: product, quantity: 1}];
            
          }
+         let sumOfCart = 0;
+         cartProducts.forEach(element => sumOfCart += element.cartProduct.price * element.quantity);
+         cartSumService.sendCartSum();
          sessionStorage.setItem("cart",JSON.stringify(cartProducts));
          props.addedToCart();
      }
 
     return (<div>
             <Link to={"/toode/" + props.product.id}>
-            <div>{props.product.name}</div>
-            <img src = {props.product.imgSrc} alt="" />
-            <div>{props.product.price} €</div>
+            <div>{productName}</div>
+            <img src = {productImg} alt="" />
+            <div>{productPrice} €</div>
             </Link>
              <button onClick= {() => onAddToCart(props.product)}> {t("add-to-cart-button")}</button>
     </div>)

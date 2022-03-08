@@ -48,20 +48,16 @@ margin-right: 10%;
 
 .cartSum button {
     border: none;
-    padding: 10px;
+    padding: 5px;
     border-radius: 5px;
-    background-color: red;
+    background-color:rgb(238, 69, 69);
 
 }
 .cartSum button:hover {
  font-weight: bold;
     
 }
-.paymentButton {
-    width: 80px;
-    background-color: lightgrey !important;
 
-}
 .buttonDisabled {
     width: 20px;
     height: 20px;

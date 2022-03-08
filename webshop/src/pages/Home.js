@@ -4,6 +4,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import { useTranslation } from "react-i18next";
 import Product from '../components/Product';
 import SortButtons from '../components/SortButtons';
+import Carousel from '../components/Carousel';
+
 
 function Home() {
     const {t} = useTranslation();
@@ -34,6 +36,7 @@ function Home() {
 
     return (
     <div>
+        <Carousel className = "slick-slider"/>
         <SortButtons prods={products} prodsSorted={setProducts}/>
     <div>{products.map(element=> <Product  key={element.id}
         product={element} addedToCart ={() => toast.success(t("Edukalt lisatud ostukorvi!"), {
