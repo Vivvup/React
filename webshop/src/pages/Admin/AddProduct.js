@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 import {  useRef, useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -12,6 +12,7 @@ function AddProduct(){
     const imgSrcRef = useRef();
     const [products, setProducts] = useState([]);
     const[buttonDisabled, setButtonDisabled] = useState(true);
+    const navigate = useNavigate();
     console.log(products);
 
     useEffect(() => {
@@ -60,6 +61,7 @@ function AddProduct(){
             position: "bottom-right",
             theme: "dark"
         });
+        navigate("/admin/tooted");
        }
     }
     function checkIdUniqueness () {

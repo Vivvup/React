@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Link } from 'react-router-dom';
-import { cartSumService } from '../services/CartSumService';
+import { cartSumService } from '../services/cartSumService';
 
 function Product(props) {
     const {t} = useTranslation();
