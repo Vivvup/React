@@ -12,6 +12,9 @@ function Navbar () {
         <Link to= '/ajalugu'>
             <button>AJALUGU</button>
         </Link>
+        <Link to= '/lisa-liik'>
+            <button>LISA KULUTUSE LIIK</button>
+        </Link>
     </div>);
 }
 export default Navbar;
