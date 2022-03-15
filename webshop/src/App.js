@@ -12,17 +12,21 @@ import SingleProduct from './pages/SingleProduct';
 import NotFound from './pages/NotFound';
 import Login from './pages/auth/Login';
 import Signup from './pages/auth/Signup';
-import { loggedInService } from './services/loggedInService';
-import { useState } from 'react';
+import AuthContext from './store/authContext';
+import { useContext } from 'react';
+import Map from './pages/Map';
+// import { loggedInService } from './services/loggedInService';
+// import { useState } from 'react';
 
 function App() {
-  const[loggedIn, setLoggedIn] = useState(getLoggedInFromSS());
+  const ctx = useContext(AuthContext);
+  // const[loggedIn, setLoggedIn] = useState(getLoggedInFromSS());
   
-  function getLoggedInFromSS() {
-    return sessionStorage.getItem("loggedIn")
-  }
+  // function getLoggedInFromSS() {
+  //   return sessionStorage.getItem("loggedIn")
+  // }
 
-  loggedInService.getIsLoggedIn().subscribe(isLoggedInFromObs=> setLoggedIn(isLoggedInFromObs));
+  // loggedInService.getIsLoggedIn().subscribe(isLoggedInFromObs=> setLoggedIn(isLoggedInFromObs));
 
   return ( 
   <div> 
@@ -30,14 +34,15 @@ function App() {
    <Routes>
       <Route path = '/' exact element = {<Home />} />
       <Route path = '/ostukorv' exact element = {<Cart />} />
-      { loggedIn && <Route>
+      { ctx.loggedIn && <Route>
            <Route path = '/admin' exact element = {<AdminHome />} />
             <Route path= '/admin/lisa' exact element={ <AddProduct />} />
             <Route path= '/admin/tooted' exact element={ <ViewProducts />} />
             <Route path= '/admin/muuda/:productId' exact element={ <EditProduct />} />
             <Route path = '/admin/registreeri' exact element = {<Signup />} />
        </Route>}
-       <Route path = '/admin/*' element = {<Login />} />
+       {!ctx.loggedIn && <Route path = '/admin/*' element = {<Login />} />}
+       <Route path = '/poed' exact element = {<Map />} />
       <Route path = '/tellimus' exact element = {<PaymentCompleted />} />
        <Route path= '/toode/:productId' exact element={ <SingleProduct />} />
        <Route path = '/logi-sisse' exact element = {<Login />} />

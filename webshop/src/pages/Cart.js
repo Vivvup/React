@@ -85,7 +85,6 @@ function isParcelMachine(parcelMachine){
 }
 
       return (
-      <div>
         <div>{cartProducts.map((element) => <div key={element.cartProduct.id} className={styles.cartItem}>
         <div className={styles.cartItemName}>{element.cartProduct.name}</div>
         <div className={styles.cartItemPrice}>{Number(element.cartProduct.price).toFixed(2)} €</div>
@@ -107,7 +106,6 @@ function isParcelMachine(parcelMachine){
          <div>{cartSum} €</div>
        <Payment sumOfCart={cartSum}/>
          </div>}
-      </div>
       </div>
       )
 }

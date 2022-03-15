@@ -1,12 +1,15 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { loggedInService} from '../../services/loggedInService';
+// import { loggedInService} from '../../services/loggedInService';
+import AuthContext from '../../store/authContext';
 
 function Login(){
     const emailRef = useRef();
     const passwordRef = useRef();
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState("");
+    const ctx = useContext(AuthContext);
+    // ctx.loggedIn;
     
     function onLogin (event) {
         event.preventDefault();
@@ -26,8 +29,9 @@ function Login(){
             console.log(res);
             if (res.ok) {
                navigate("/admin/");
-               sessionStorage.setItem("loggedIn", true);
-               loggedInService.sendIsLoggedIn(true);
+               ctx.onLogin();
+            //    sessionStorage.setItem("loggedIn", true);
+            //    loggedInService.sendIsLoggedIn(true);
             } else {
                 return res.json();
             }
